@@ -21,36 +21,30 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool _state = true;
-
-  @override
+  bool _state = false;
+  
+   @override
   void initState() {
     super.initState();
     ShakeDetector detector = ShakeDetector.autoStart(onPhoneShake: () {
       setState(() {
         _state = !_state;
-      });
-      print(_state);  //for testing purposes
     });
+    });
+    
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Column(children: [
-        Container(
-          color: _state ? Color.fromARGB(255, 255, 251, 0) : Color.fromARGB(255, 34, 241, 7),
-          height: 300,
-          width: 500,
-        ),
-        Container(
-          color: _state ? Color.fromARGB(255, 5, 253, 5) : Color.fromARGB(255, 251, 255, 3),
-          height: 300,
-          width: 500,
-        ),
-      ],
-      ),
-    ),
+      body: Column(children: [
+        Expanded(child: Container(
+          color: _state ? Colors.black : Colors.red,
+        ),),
+        Expanded(child: Container(
+          color: _state ? Colors.red : Colors.black,
+        ),),
+      ]),
     );
   }
 }
